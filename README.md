@@ -7,7 +7,7 @@
     * Click `Clone or download` (the green button on the right).
     * Make sure the page says `Clone with SSH` (rather than `Clone with HTTPS`).
     * Open your git client (e.g. GitKraken) and use this link to clone the repo.  
-    Your trainer will able to help you with this.
+    Your trainer will be able to help you with this.
 
 3. "Cloning the repo" will create a folder on your computer with the files from this repo.  
 Open this folder in Visual Studio Code.

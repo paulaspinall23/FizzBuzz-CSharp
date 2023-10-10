@@ -4,9 +4,12 @@ internal class Program
 {
     static void Fizzbuzz()
     {
+        Console.Write("Please enter a maximum number: ");
+        int choice = Convert.ToInt32(Console.ReadLine());
+
         List<string> result = new List<string>();
 
-        for (int i = 1; i < 300; i++)
+        for (int i = 1; i <= choice; i++)
         {
             result.Clear();
             if (IsDivisibleBy(i, 3))

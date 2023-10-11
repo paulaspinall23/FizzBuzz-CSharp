@@ -12,6 +12,7 @@ internal class Program
         for (int i = 1; i <= choice; i++)
         {
             result.Clear();
+            
             if (IsDivisibleBy(i, 3))
             {
                 result.Add("Fizz");
@@ -31,15 +32,22 @@ internal class Program
             }
             if (IsDivisibleBy(i, 13))
             {
-                if (result.Contains("Fizz"))
+                bool didAddFezz = false;
+
+                for (int j = 0; j < result.Count; j++)
                 {
-                    int index = result.IndexOf("Fizz");
-                    result.Insert(index+1, "Fezz");
+                    string currentword = result[j];
+                    if (currentword[0] == 'B' || currentword[0] == 'b')
+                    {
+                        result.Insert(j, "Fezz");
+                        didAddFezz = true;
+                        break;
+                    }
                 }
-                else
+                if (!didAddFezz)
                 {
-                    result.Insert(0, "Fezz");
-                }
+                    result.Add("Fezz");
+                }   
             }
             if (IsDivisibleBy(i, 17))
             {

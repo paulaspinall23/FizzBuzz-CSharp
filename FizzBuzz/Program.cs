@@ -2,57 +2,81 @@
 
 internal class Program
 {
-    static void Fizzbuzz()
+    static void Fizzbuzz(string[] args)
     {
+        List<int> userEntry = new List<int>();
+
+        foreach (string entry in args)
+        {
+            userEntry.Add(Convert.ToInt32(entry));
+        }
+
         Console.Write("Please enter a maximum number: ");
         int choice = Convert.ToInt32(Console.ReadLine());
+
+        Dictionary<int, string> fbWords = new Dictionary<int, string>
+        {
+            {3, "Fizz"},
+            {5, "Buzz"},
+            {7, "Bang"},
+            {11, "Bong"},
+            {13, "Fezz"}
+        };
 
         List<string> result = new List<string>();
 
         for (int i = 1; i <= choice; i++)
         {
             result.Clear();
-            
-            if (IsDivisibleBy(i, 3))
-            {
-                result.Add("Fizz");
-            }
-            if (IsDivisibleBy(i, 5))
-            {
-                result.Add("Buzz");
-            }
-            if (IsDivisibleBy(i, 7))
-            {
-                result.Add("Bang");
-            }
-            if (IsDivisibleBy(i, 11))
-            {
-                result.Clear();
-                result.Add("Bong");
-            }
-            if (IsDivisibleBy(i, 13))
-            {
-                bool didAddFezz = false;
 
-                for (int j = 0; j < result.Count; j++)
+            foreach (int item in userEntry)
+            {
+                if (item != 11 && item != 13 && item != 17)
                 {
-                    string currentword = result[j];
-                    if (currentword[0] == 'B' || currentword[0] == 'b')
+                    if (IsDivisibleBy(i, item))
                     {
-                        result.Insert(j, "Fezz");
-                        didAddFezz = true;
-                        break;
+                        result.Add(fbWords[item]);
                     }
                 }
-                if (!didAddFezz)
+                if (item == 11)
                 {
-                    result.Add("Fezz");
-                }   
-            }
-            if (IsDivisibleBy(i, 17))
-            {
-                result.Reverse();
-            }
+                    if (IsDivisibleBy(i, 11))
+                    {
+                        result.Clear();
+                        result.Add("Bong");
+                    }
+                }
+                if (item == 13)
+                {
+                    if (IsDivisibleBy(i, 13))
+                    {
+                        bool didAddFezz = false;
+
+                        for (int j = 0; j < result.Count; j++)
+                        {
+                            string currentword = result[j];
+                            if (currentword[0] == 'B' || currentword[0] == 'b')
+                            {
+                                result.Insert(j, "Fezz");
+                                didAddFezz = true;
+                                break;
+                            }
+                        }
+                        if (!didAddFezz)
+                        {
+                            result.Add("Fezz");
+                        }   
+                    }
+                }
+                if (item == 17)
+                {
+                    if (IsDivisibleBy(i, 17))
+                    {
+                        result.Reverse();
+                    }
+                }
+            }           
+
             if (result.Count == 0)
             {
                 result.Add(i.ToString());
@@ -67,6 +91,6 @@ internal class Program
     
     static void Main(string[] args)
     {
-        Fizzbuzz();
+        Fizzbuzz(args);
     }
 }
